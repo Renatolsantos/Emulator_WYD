@@ -2,8 +2,6 @@
 using Emulator_WYD.Helper;
 using Emulator_WYD.Logger;
 using Emulator_WYD.Model.Structures;
-using System.Net.Sockets;
-using System.Reflection;
 
 namespace Emulator_WYD.Client.Commands
 {
@@ -37,14 +35,15 @@ namespace Emulator_WYD.Client.Commands
                 return;
             }
 
-            var instance = Activator.CreateInstance(objType);
+            var args = new object[] { client, data };
+            var instance = Activator.CreateInstance(objType, args);
 
             if (instance == null)
             {
-                throw new Exception($"Cannot possible to get instance of {nameof(objType)}");
+                throw new Exception($"Was not possible to get instance of {nameof(objType)}");
             }
 
-            (instance as ICommand)!.Execute(client, data);
+            (instance as ICommand)!.Execute();
         }
     }
 }

@@ -5,14 +5,23 @@ namespace Emulator_WYD.Client.Commands
 {
     public class P_020d_Command : ICommand
     {
-        public void Execute(Client client, byte[] data)
+        public P_020d_Command(Client client, byte[] data)
         {
-            if(data == null)
+            Client = client;
+            Data = data;
+        }
+
+        public Client Client { get; }
+        public byte[] Data { get; }
+
+        public void Execute()
+        {
+            if (Data == null)
             {
-                throw new ArgumentNullException(nameof(data), $"Data cannot be null. ClientId {data}");
+                throw new ArgumentNullException(nameof(Data), $"Data cannot be null. ClientId {Data}");
             }
 
-            client.Send(P_101_Struct.New("Worked"));
+            Client.Send(P_101_Struct.New("Worked"));
         }
     }
 }
