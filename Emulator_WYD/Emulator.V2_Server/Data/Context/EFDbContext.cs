@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Emulator.V2_Host.Data.Context
+namespace Emulator_WYD.Data.Context
 {
     public class EFDbContext : DbContext
     {

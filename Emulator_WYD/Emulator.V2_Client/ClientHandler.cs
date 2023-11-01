@@ -1,4 +1,5 @@
-﻿using Emulator.V2_CrossCutting;
+﻿using Emulator.V2_Client.Helper;
+using Emulator.V2_CrossCutting;
 using Emulator.V2_Domain.Model;
 using Emulator.V2_Domain.Model.Enum;
 using System.Net.Sockets;
@@ -37,7 +38,7 @@ namespace Emulator.V2_Client
                     return;
                 }
 
-                var buffer = Client.Buffer.Take(packageSize);
+                var buffer = Client.Buffer.Take(packageSize).ToArray();
 
                 if (Client.Status == ClientStatus.Connection)
                 {
@@ -47,7 +48,7 @@ namespace Emulator.V2_Client
                     }
                     if (packageSize == 120)
                     {
-                        buffer = buffer.Skip(4);
+                        buffer = buffer.Skip(4).ToArray();
                     }
 
                     Client.Status = ClientStatus.Login;
@@ -58,6 +59,11 @@ namespace Emulator.V2_Client
                     CloseConnection();
                     return; 
                 }
+
+                PSecurity.Decrypt(buffer);
+                Log.Information($"Package received: {buffer}");
+
+
             }
             catch (Exception ex)
             {

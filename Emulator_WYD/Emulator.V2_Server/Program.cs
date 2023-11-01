@@ -1,7 +1,7 @@
-﻿using Emulator.V2_Host.Startup;
+﻿using Emulator_WYD.Startup;
 using Microsoft.Extensions.Configuration;
 
-namespace Emulator.V2_Host
+namespace Emulator_WYD
 {
     class Program
     {

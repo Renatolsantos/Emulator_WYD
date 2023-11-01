@@ -1,9 +1,7 @@
-﻿using Emulator.V2_CrossCutting;
-using Emulator.V2_Domain.Model;
-using Emulator.V2_Host.Settings;
+﻿using Emulator_WYD.Model;
 using Microsoft.Extensions.Configuration;
 
-namespace Emulator.V2_Host.Startup
+namespace Emulator_WYD.Startup
 {
     public static class Game
     {
@@ -13,13 +11,11 @@ namespace Emulator.V2_Host.Startup
             {
                 Console.Title = "Open WYD Server";
 
-                var server = new Server();
-                configuration.Bind("Server", server);
-
-                new ServerHandler(server);
+                Server.GetInstace().Start(configuration);
             }
             finally
             {
+                Console.Read();
                 Initialize(configuration);
             }
         }

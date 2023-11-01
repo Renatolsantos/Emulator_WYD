@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Repository\Interfaces\" />
+    <Folder Include="Settings\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Emulator.V2_Client\Emulator.V2_Client.csproj" />
-    <ProjectReference Include="..\Emulator.V2_CrossCutting\Emulator.V2_CrossCutting.csproj" />
-    <ProjectReference Include="..\Emulator.V2_Domain\Emulator.V2_Domain.csproj" />
+    <Compile Update="Logger\Log.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
