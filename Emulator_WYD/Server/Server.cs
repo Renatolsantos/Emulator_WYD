@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Emulator_WYD.Model
+namespace Emulator_WYD.Server
 {
     public sealed class Server
     {

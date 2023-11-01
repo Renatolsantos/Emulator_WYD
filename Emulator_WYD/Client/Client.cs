@@ -1,6 +1,5 @@
 ﻿using Emulator_WYD.Helper;
 using Emulator_WYD.Logger;
-using Emulator_WYD.Model;
 using Emulator_WYD.Model.Enum;
 using System.Net.Sockets;
 
@@ -8,7 +7,7 @@ namespace Emulator_WYD.Client
 {
     public class Client
     {
-        public Client(Server server, Socket socket)
+        public Client(Server.Server server, Socket socket)
         {
             Server = server;
             Socket = socket;
@@ -16,7 +15,7 @@ namespace Emulator_WYD.Client
             BeginReceive();
         }
 
-        public Server Server { get; private set; }
+        public Server.Server Server { get; private set; }
         public Socket Socket { get; private set; }
         public bool IsActive { get; private set; } = true;
         public ClientStatus Status { get; private set; } = ClientStatus.Connection;

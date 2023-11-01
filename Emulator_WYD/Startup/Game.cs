@@ -1,5 +1,4 @@
-﻿using Emulator_WYD.Model;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace Emulator_WYD.Startup
 {
@@ -11,7 +10,7 @@ namespace Emulator_WYD.Startup
             {
                 Console.Title = "Open WYD Server";
 
-                Server.GetInstace().Start(configuration);
+                Server.Server.GetInstace().Start(configuration);
             }
             finally
             {

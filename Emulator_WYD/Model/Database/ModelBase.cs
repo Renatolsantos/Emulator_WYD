@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Emulator_WYD.Model
+namespace Emulator_WYD.Model.Database
 {
     public record class ModelBase
     {

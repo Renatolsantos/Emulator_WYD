@@ -1,7 +1,7 @@
 ﻿using Emulator_WYD.Logger;
 using System.Runtime.InteropServices;
 
-namespace Emulator.V2_Host.Helper
+namespace Emulator_WYD.Helper
 {
     public static class PackageConvert
     {

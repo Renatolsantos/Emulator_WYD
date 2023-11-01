@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emulator_WYD", "Emulator.V2_Server\Emulator_WYD.csproj", "{3305F1B2-7983-4E06-804A-DF86BB568EBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emulator_WYD", "Emulator_WYD\Emulator_WYD.csproj", "{3305F1B2-7983-4E06-804A-DF86BB568EBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace Emulator.V2_Host.Client.Commands.Interfaces
+﻿namespace Emulator_WYD.Client.Commands.Interfaces
 {
     public interface ICommand
     {

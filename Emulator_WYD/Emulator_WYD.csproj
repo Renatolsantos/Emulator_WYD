@@ -3,14 +3,13 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>Emulator.V2_Host</RootNamespace>
+    <RootNamespace>Emulator_WYD</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Data\Repository\Interfaces\" />
-    <Folder Include="Settings\" />
   </ItemGroup>
 
   <ItemGroup>
