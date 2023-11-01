@@ -6,7 +6,12 @@
     <RootNamespace>Emulator_WYD</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Model\Structures\HeaderStruct.cs~RF5e2323d2.TMP" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\Repository\Interfaces\" />

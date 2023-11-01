@@ -1,25 +1,36 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Emulator_WYD.Helper
 {
     public static class ByteExtension
     {
-        public static byte[] ToByteArray<T>(this T obj)
+        public static byte[] ToByteArray<T>(T obj)
         {
-            if (obj is null)
+            if (obj == null)
             {
                 return Array.Empty<byte>();
             }
 
-            switch (typeof(T).Name)
+            int size = Marshal.SizeOf(obj);
+            byte[] byteArray = new byte[size];
+
+            var handle = GCHandle.Alloc(byteArray, GCHandleType.Pinned);
+            try
             {
-                case "string":
-                {
-                    return Encoding.ASCII.GetBytes(obj.ToString()!);
-                }
-                default: return Array.Empty<byte>();
+                IntPtr pointer = handle.AddrOfPinnedObject();
+                Marshal.StructureToPtr(obj, pointer, false);
+                return byteArray;
+            }
+            finally
+            {
+                if (handle.IsAllocated)
+                    handle.Free();
             }
         }
+
+        public static byte[] ToByteArray(this string value)
+            => Encoding.UTF8.GetBytes(value);
 
         public static string BytesToString(this byte[] bytes)
         {
@@ -28,7 +39,7 @@ namespace Emulator_WYD.Helper
                 return string.Empty;
             }
 
-            return Encoding.ASCII.GetString(bytes);
+            return Encoding.UTF8.GetString(bytes);
         }
     }
 }
