@@ -3,6 +3,7 @@ using Emulator_WYD.Helper;
 using Emulator_WYD.Logger;
 using Emulator_WYD.Model.Enum;
 using Emulator_WYD.Model.Structures;
+using Emulator_WYD.Startup;
 using System.Net;
 using System.Net.Sockets;
 
@@ -18,6 +19,8 @@ namespace Emulator_WYD.Client
         public bool IsActive { get; private set; } = true;
         public ClientStatus Status { get; private set; } = ClientStatus.Connection;
         public byte[] Buffer { get; private set; } = new byte[1024];
+        public int ClientId { get; set; }
+        public DateTimeOffset StartedTime { get; private set; }
 
         /// <summary>
         /// Constructor for <see cref="Client"/>.
@@ -29,11 +32,13 @@ namespace Emulator_WYD.Client
             Server = server;
             Socket = socket;
 
+            StartedTime = Game.Time;
+
             BeginReceive();
         }
 
         /// <summary>
-        /// Close the socket connection.
+        /// Close socket connection.
         /// </summary>
         public void CloseConnection()
         {
@@ -45,6 +50,21 @@ namespace Emulator_WYD.Client
 
                 Server.Clients.Remove(this);
             }
+        }
+
+        /// <summary>
+        /// Close socket connection by passing a message
+        /// </summary>
+        /// <param name="message">The message string to send.</param>
+        /// <exception cref="Exception">Throws when message is null.</exception>
+        public void CloseConnection(string message)
+        {
+            if (message == null)
+            {
+                throw new Exception("Message is null");
+            }
+
+            Send(P_101_Struct.New(message));
         }
 
         /// <summary>
@@ -64,7 +84,7 @@ namespace Emulator_WYD.Client
 
                 Log.Send(this, PackageConvert.ToStruct<HeaderStruct>(send));
 
-                PSecurity.Encrypt(ref send);
+                PackageCryptography.Encrypt(ref send);
 
                 Socket.BeginSend(send, 0, send.Length, SocketFlags.None, null, null);
             }
@@ -123,7 +143,7 @@ namespace Emulator_WYD.Client
                     return;
                 }
 
-                PSecurity.Decrypt(buffer);
+                PackageCryptography.Decrypt(buffer);
 
                 CommandHandler.Handle(this, buffer);
             }

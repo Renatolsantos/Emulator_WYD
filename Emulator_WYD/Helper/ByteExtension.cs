@@ -39,7 +39,7 @@ namespace Emulator_WYD.Helper
                 return string.Empty;
             }
 
-            return Encoding.UTF8.GetString(bytes);
+            return Encoding.UTF8.GetString(bytes).Replace("\0", string.Empty);
         }
     }
 }

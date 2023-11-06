@@ -11,7 +11,7 @@ namespace Emulator_WYD.Server
         private Server() { }
         private static Server? _instance;
 
-        public static Server GetInstace()
+        public static Server GetInstance()
         {
             if (_instance == null)
             {
@@ -65,7 +65,7 @@ namespace Emulator_WYD.Server
 
                 Log.Information($"Server {Name} running at {iPEndPoint.Address}:{iPEndPoint.Port}");
 
-                Task.WaitAll(RunAsync());
+                //Task.WaitAll(RunAsync());
             }
             catch (Exception ex)
             {
@@ -124,14 +124,29 @@ namespace Emulator_WYD.Server
             }
         }
 
+        public void Stop()
+        {
+            Log.Information("Stoping server...");
+
+            if (IsActive)
+            {
+                foreach (var client in Clients)
+                {
+                    client.CloseConnection();
+                }
+
+                Socket!.Close();
+            }
+
+            Log.Information("Server stoped.");
+        }
+
         private async Task RunAsync()
         {
             while (IsActive)
             {
                 try
                 {
-
-                    //Log.Normal("Tick");
                     await Task.Delay(EventTick);
                 }
                 catch (Exception ex)

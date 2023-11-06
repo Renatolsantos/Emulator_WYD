@@ -16,7 +16,7 @@ namespace Emulator_WYD.Model.Structures
         public byte[] MessageBytes; // 12 a 91	= 80
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-        public byte[] Unknow1;      // 92 a 107	= 16
+        public byte[] Unknown1;      // 92 a 107	= 16
 
         // Helpers
         public string Message
@@ -36,7 +36,7 @@ namespace Emulator_WYD.Model.Structures
             {
                 Header = HeaderStruct.New(0x0101, Marshal.SizeOf<P_101_Struct>(), 0),
                 Message = Message,
-                Unknow1 = new byte[16]
+                Unknown1 = new byte[16]
             };
 
             return tmp;

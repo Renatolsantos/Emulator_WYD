@@ -1,6 +1,6 @@
 ﻿namespace Emulator_WYD.Helper
 {
-    public static class PSecurity
+    public static class PackageCryptography
     {
         #region Keys
         public static byte[] keyTable =
@@ -128,7 +128,7 @@
             }
         }
 
-        public static int GetInitialOffset(byte[] Buffer)
+        private static int GetInitialOffset(byte[] Buffer)
         {
             int iOffset = 0;
 

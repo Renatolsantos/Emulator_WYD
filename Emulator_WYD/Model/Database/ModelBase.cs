@@ -4,6 +4,7 @@ namespace Emulator_WYD.Model.Database
 {
     public record class ModelBase
     {
+        [Required]
         public int Id { get; set; }
 
         [Required]

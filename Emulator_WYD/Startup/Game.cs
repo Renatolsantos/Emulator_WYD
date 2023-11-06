@@ -4,19 +4,16 @@ namespace Emulator_WYD.Startup
 {
     public static class Game
     {
+        public static DateTime Time => DateTime.UtcNow;
+
         public static void Initialize(IConfiguration configuration)
         {
-            try
-            {
-                Console.Title = "Open WYD Server";
+            Console.Title = "Open WYD Server";
 
-                Server.Server.GetInstace().Start(configuration);
-            }
-            finally
-            {
-                Console.Read();
-                Initialize(configuration);
-            }
+            Server.Server.GetInstance().Start(configuration);
         }
+
+        public static void Shutdown()
+            => Server.Server.GetInstance().Stop();
     }
 }
